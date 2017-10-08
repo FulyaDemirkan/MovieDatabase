@@ -6,10 +6,7 @@ A stand-alone Java application to display all the movies which are stored in SQL
 This application requires Oracle JDK8 (Windows) or OpenJDK+OpenJFX (Linux).
 
 ## Installation ##
-No installation is required. But users must also have proper database.
-
-## How to Run ##
-java -jar MovieDB.jar
+No installation is required. But users must also have a proper database on MySQL server. (Not provided in this project)
 
 ## Technologies Used ##
 Java, JavaFX, MySQL
