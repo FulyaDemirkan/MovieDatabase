@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.geometry.*?> 
+<?import java.net.URL?>
+
+<!--
+////////////////////////////////////////////////////////////////////////////////
+//
+// FXMLAssignment1.fxml
+// ==================
+// Layout of a stand-alone Java application to display all the movies by 
+// selected year, genre or name.
+//
+// AUTHOR:  F. Fulya Demirkan (demirkaf@sheridancollege.ca)
+// CREATED: 30/Sep/2017
+// UPDATED: 06/Oct/2017
+//
+////////////////////////////////////////////////////////////////////////////////
+-->
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="fd.FXMLAssignment1Controller">
+    <top>
+        <HBox spacing="50">
+            <BorderPane.margin>
+                <Insets top="10" right="10" bottom="10" left="10" />
+            </BorderPane.margin>
+            <!-- CONNECTION TO DB UER INPUT AREA -->
+            <GridPane vgap="10" hgap="10" GridPane.rowIndex="0" 
+                      GridPane.columnIndex="0" >
+                <children>
+                    <Label text="Database" styleClass="header" 
+                           GridPane.rowIndex="0" GridPane.columnIndex="0"
+                           GridPane.columnSpan="2"/>
+                    <Label text="URL" GridPane.rowIndex="1" 
+                           GridPane.columnIndex="0"/>
+                    <TextField fx:id="txtUrl" 
+                               text="" 
+                               GridPane.rowIndex="1" GridPane.columnIndex="1" 
+                               minWidth="200"/>
+                    <Label text="User" GridPane.rowIndex="2" 
+                           GridPane.columnIndex="0"/>
+                    <TextField fx:id="txtUser" text="" GridPane.rowIndex="2"
+                               GridPane.columnIndex="1" />
+                    <Label text="Password" GridPane.rowIndex="3" 
+                           GridPane.columnIndex="0"/>
+                    <PasswordField fx:id="txtPassword" text="" 
+                                   GridPane.rowIndex="3" 
+                                   GridPane.columnIndex="1" />
+                    <Button text="_Connect" fx:id="btnConnect" 
+                            GridPane.rowIndex="4" GridPane.columnIndex="1" 
+                            mnemonicParsing="true" onAction="#connection" />
+                    <Label fx:id="lblError" GridPane.rowIndex="5" 
+                           GridPane.columnIndex="0" GridPane.columnSpan="2" />
+                </children>
+            </GridPane>
+            <!-- SEARCH OPTIONS AREA -->
+            <GridPane vgap="10" hgap="10" GridPane.rowIndex="0" 
+                      GridPane.columnIndex="1" minWidth="300">
+                <children>
+                    <Label text="Search Options" styleClass="header" 
+                           GridPane.rowIndex="0" GridPane.columnIndex="0"  
+                           GridPane.columnSpan="2"/>
+                    <Label text="Year" GridPane.rowIndex="1" 
+                           GridPane.columnIndex="0"/>
+                    <ComboBox fx:id="ddlYear" promptText="Select a Year" 
+                              visibleRowCount="10" 
+                              GridPane.rowIndex="1" 
+                              GridPane.columnIndex="1" minWidth="150"/>
+                    <Label text="Genre:" GridPane.rowIndex="2" 
+                           GridPane.columnIndex="0"/>
+                    <ComboBox fx:id="ddlGenre" promptText="Select a Genre" 
+                              visibleRowCount="10" 
+                              GridPane.rowIndex="2" 
+                              GridPane.columnIndex="1" minWidth="150"/>
+                    <Label text="Name:" GridPane.rowIndex="3" 
+                           GridPane.columnIndex="0"/>
+                    <TextField fx:id="txtTitle" GridPane.rowIndex="3" 
+                               GridPane.columnIndex="1"/>
+                    <Button fx:id="btnSearch" text="_Search" 
+                            mnemonicParsing="true"
+                            GridPane.rowIndex="4" GridPane.columnIndex="1" 
+                            GridPane.halignment="RIGHT" 
+                            onAction="#searchMovie"/>
+                    <Label fx:id="lblOptionError" GridPane.rowIndex="4" 
+                           GridPane.columnIndex="2" />
+                    <Label fx:id="lblOptionInfo" GridPane.rowIndex="5" 
+                           GridPane.columnIndex="0" GridPane.columnSpan="2" 
+                           GridPane.halignment="RIGHT" />
+                </children>
+            </GridPane>
+        </HBox>
+    </top>
+    <center>
+        <!-- SEARCH RESULTS AREA -->
+        <TableView fx:id="tblMovies" minWidth="900" minHeight="450">
+            <placeholder>
+                <Label fx:id="lblSearch" text=""/>
+            </placeholder>
+            <columns>
+                <TableColumn fx:id="titleColumn" text="Title" 
+                             minWidth="450" >
+                    <cellValueFactory>
+                        <PropertyValueFactory property="title" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="yearColumn" text="Year" 
+                             prefWidth="100" >
+                    <cellValueFactory>
+                        <PropertyValueFactory property="year" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="runningTimeColumn" 
+                             text="Run Time" prefWidth="100" >
+                    <cellValueFactory>
+                        <PropertyValueFactory property="runningTime" />
+                    </cellValueFactory>
+                </TableColumn>     
+                <TableColumn fx:id="genreColumn" 
+                             text="Genre" prefWidth="250" >
+                    <cellValueFactory>
+                        <PropertyValueFactory property="genres" />
+                    </cellValueFactory>
+                </TableColumn>  
+            </columns>
+            <sortOrder>
+                <fx:reference source="titleColumn" />
+            </sortOrder>
+        </TableView>
+    </center>
+    <stylesheets>
+        <URL value="@css/main.css" />
+    </stylesheets>
+</BorderPane>

@@ -1,0 +1,23 @@
+/* 
+////////////////////////////////////////////////////////////////////////////////
+//
+// main.css
+// ==================
+// CSS rules for a stand-alone Java application to display all the movies
+// by selected year, genre or name.
+//
+// AUTHOR:  F. Fulya Demirkan (demirkaf@sheridancollege.ca)
+// CREATED: 30/Sep/2017
+// UPDATED: 03/Oct/2017
+//
+////////////////////////////////////////////////////////////////////////////////
+*/
+
+#lblOptionError, #lblError {
+    -fx-text-fill: red;
+    -fx-font-weight: bold;
+}
+
+.header {
+    -fx-font-weight: bold;
+}
